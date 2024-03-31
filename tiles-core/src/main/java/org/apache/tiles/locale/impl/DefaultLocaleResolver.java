@@ -36,22 +36,8 @@ import org.apache.tiles.request.Request;
  */
 public class DefaultLocaleResolver implements LocaleResolver {
 
-    /**
-     * The attribute name that is used to store the current locale.
-     */
-    public static final String LOCALE_KEY = "org.apache.tiles.LOCALE";
-
     /** {@inheritDoc} */
-    public Locale resolveLocale(Request request) {
-        Locale retValue = null;
-        Map<String, Object> session = request.getContext("session");
-        if (session != null) {
-            retValue = (Locale) session.get(DefaultLocaleResolver.LOCALE_KEY);
-        }
-        if (retValue == null) {
-            retValue = request.getRequestLocale();
-        }
-
-        return retValue;
+    public Locale resolveLocale(TilesRequestContext request) {
+        return request.getRequestLocale();
     }
 }
